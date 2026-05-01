@@ -67,24 +67,29 @@ export default function Hero({ modes }: HeroProps) {
           </motion.p>
 
           <motion.div
-            className="flex items-center gap-5"
+            className="flex flex-col gap-3"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
-            <a
-              href="#modos"
-              className="inline-flex items-center gap-2 bg-violet text-bone font-sans text-xs tracking-[0.18em] uppercase px-7 py-3.5 hover:bg-violet-dark transition-colors duration-300"
-            >
-              Ver los looks
-              <span>→</span>
-            </a>
-            <a
-              href="/manifiesto"
-              className="font-sans text-xs tracking-[0.18em] uppercase text-bone/50 hover:text-bone transition-colors duration-300 border-b border-bone/20 pb-0.5"
-            >
-              Nuestra historia
-            </a>
+            <div className="flex items-center gap-5">
+              <a
+                href="#modos"
+                className="inline-flex items-center gap-2 bg-terracota text-bone font-sans text-xs tracking-[0.18em] uppercase px-7 py-3.5 hover:bg-terracota-dark transition-colors duration-300"
+              >
+                Ver los looks
+                <span>→</span>
+              </a>
+              <a
+                href="/manifiesto"
+                className="font-sans text-xs tracking-[0.18em] uppercase text-bone/50 hover:text-bone transition-colors duration-300 border-b border-bone/20 pb-0.5"
+              >
+                Nuestra historia
+              </a>
+            </div>
+            <span className="font-sans text-[10px] tracking-widest uppercase text-bone/30">
+              {modes.length} universos · {modes.reduce((acc, m) => acc + (m.products?.length ?? 0), 0)} looks
+            </span>
           </motion.div>
         </div>
 
@@ -98,7 +103,7 @@ export default function Hero({ modes }: HeroProps) {
           >
             {/* Label */}
             <p className="font-sans text-[10px] tracking-[0.3em] uppercase text-bone/40 mb-3 hidden md:block">
-              Modos disponibles
+              ↓ Elige tu universo
             </p>
 
             {/* Cards strip — horizontally scrollable on mobile */}
@@ -109,10 +114,10 @@ export default function Hero({ modes }: HeroProps) {
                 <Link
                   key={mode.slug}
                   href={`/modo/${mode.slug}`}
-                  className="group flex-shrink-0 snap-start w-[72vw] md:w-auto md:flex-1 flex items-center gap-3 bg-bone/10 backdrop-blur-sm border border-bone/15 hover:border-violet/60 hover:bg-bone/15 transition-all duration-300 p-3"
+                  className="group flex-shrink-0 snap-start w-[72vw] md:w-auto md:flex-1 flex items-center gap-3 bg-bone/10 backdrop-blur-sm border border-bone/15 hover:border-terracota/60 hover:bg-bone/15 transition-all duration-300 p-3"
                 >
                   {/* Thumbnail */}
-                  <div className="w-14 h-14 md:w-16 md:h-16 flex-shrink-0 overflow-hidden">
+                  <div className="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 overflow-hidden">
                     <img
                       src={`${mode.hero_image.split("?")[0]}?w=120&q=70&fit=crop`}
                       alt={mode.name}
@@ -128,12 +133,12 @@ export default function Hero({ modes }: HeroProps) {
                       {mode.name.replace("Modo ", "")}
                     </p>
                     {mode.min_price && (
-                      <p className="font-sans text-[11px] text-bone/50 mt-0.5">
+                      <p className="font-sans text-[11px] text-terracota-muted mt-0.5">
                         desde {formatPrice(mode.min_price)}
                       </p>
                     )}
                   </div>
-                  <span className="text-bone/30 group-hover:text-violet group-hover:translate-x-0.5 transition-all duration-300 text-sm flex-shrink-0">
+                  <span className="text-bone/30 group-hover:text-terracota-muted group-hover:translate-x-0.5 transition-all duration-300 text-sm flex-shrink-0">
                     →
                   </span>
                 </Link>
