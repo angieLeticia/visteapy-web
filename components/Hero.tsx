@@ -52,9 +52,9 @@ export default function Hero({ modes }: HeroProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            Tu look favorito
+            La ropa de
             <br />
-            <em>ya existe.</em>
+            <em>las protagonistas.</em>
           </motion.h1>
 
           <motion.p
@@ -63,7 +63,7 @@ export default function Hero({ modes }: HeroProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            Outfits que dicen todo antes de que hables.
+            Para las que lo son.
           </motion.p>
 
           <motion.div
