@@ -31,7 +31,7 @@ export default function Hero({ modes }: HeroProps) {
 
       {/* Main content */}
       <motion.div
-        className="relative z-10 h-full flex flex-col justify-between pt-28 md:pt-32 pb-0 px-6 md:px-16 max-w-7xl mx-auto"
+        className="relative z-10 h-full flex flex-col justify-between pt-20 md:pt-32 pb-0 px-6 md:px-16 max-w-7xl mx-auto"
         style={{ y: textY }}
       >
         {/* Top: headline + CTA */}
@@ -102,7 +102,9 @@ export default function Hero({ modes }: HeroProps) {
             </p>
 
             {/* Cards strip — horizontally scrollable on mobile */}
-            <div className="flex gap-3 overflow-x-auto pb-6 md:pb-8 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0">
+            <div className="flex gap-3 overflow-x-auto pb-6 md:pb-8 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0"
+              style={{ touchAction: "pan-x" }}
+            >
               {previewModes.map((mode, i) => (
                 <Link
                   key={mode.slug}
