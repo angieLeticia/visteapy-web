@@ -1,10 +1,8 @@
-import { getAllModes } from "@/lib/db";
 import ModeCard from "./ModeCard";
 import FadeIn from "./ui/FadeIn";
+import { Mode } from "@/lib/db";
 
-export default async function ModesGrid() {
-  const modes = await getAllModes();
-
+export default function ModesGrid({ modes }: { modes: Mode[] }) {
   return (
     <section id="modos" className="bg-bone py-24 md:py-36 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">

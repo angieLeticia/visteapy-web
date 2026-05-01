@@ -25,6 +25,7 @@ export interface Mode {
   hero_image_alt: string;
   sort_order: number;
   products?: Product[];
+  min_price?: number;
 }
 
 export async function getAllModes(): Promise<Mode[]> {
@@ -38,6 +39,27 @@ export async function getAllModes(): Promise<Mode[]> {
     return [];
   }
   return data ?? [];
+}
+
+export async function getAllModesWithPrices(): Promise<Mode[]> {
+  const [modes, prices] = await Promise.all([getAllModes(), getModePrices()]);
+  return modes.map((m) => ({ ...m, min_price: prices[m.slug] }));
+}
+
+export async function getModePrices(): Promise<Record<string, number>> {
+  const { data, error } = await supabase
+    .from("products")
+    .select("mode_slug, price");
+
+  if (error || !data) return {};
+
+  const prices: Record<string, number> = {};
+  for (const p of data) {
+    if (!(p.mode_slug in prices) || p.price < prices[p.mode_slug]) {
+      prices[p.mode_slug] = p.price;
+    }
+  }
+  return prices;
 }
 
 export async function getModeWithProducts(slug: string): Promise<Mode | null> {

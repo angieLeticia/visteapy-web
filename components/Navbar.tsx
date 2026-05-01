@@ -13,6 +13,11 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const textColor = scrolled ? "text-ink" : "text-bone";
+  const mutedColor = scrolled ? "text-ink/60" : "text-bone/60";
+  const logoSubColor = scrolled ? "text-ink/50" : "text-bone/50";
+  const hamburgerColor = scrolled ? "bg-ink" : "bg-bone";
+
   return (
     <>
       <motion.header
@@ -24,75 +29,112 @@ export default function Navbar() {
         transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
         <nav className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between h-16 md:h-20">
+          {/* Logo */}
           <Link href="/" className="flex flex-col leading-none">
-            <span className="font-serif text-2xl font-bold tracking-tight text-ink">APY</span>
-            <span className="font-sans text-[9px] tracking-[0.25em] uppercase text-ink/60">
+            <span className={`font-serif text-2xl font-bold tracking-tight ${textColor} transition-colors duration-300`}>
+              APY
+            </span>
+            <span className={`font-sans text-[9px] tracking-[0.25em] uppercase ${logoSubColor} transition-colors duration-300`}>
               visteapy
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-10">
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-8">
             <Link
               href="/#modos"
-              className="font-sans text-xs tracking-widest uppercase text-ink/70 hover:text-violet transition-colors duration-300"
+              className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-violet transition-colors duration-300`}
             >
               Modos
             </Link>
             <Link
               href="/manifiesto"
-              className="font-sans text-xs tracking-widest uppercase text-ink/70 hover:text-violet transition-colors duration-300"
+              className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-violet transition-colors duration-300`}
             >
               Manifiesto
             </Link>
             <Link
               href="/contacto"
-              className="font-sans text-xs tracking-widest uppercase text-ink/70 hover:text-violet transition-colors duration-300"
+              className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-violet transition-colors duration-300`}
             >
               Contacto
             </Link>
+
+            {/* CTA */}
+            <Link
+              href="/#modos"
+              className="inline-flex items-center gap-1.5 bg-violet text-bone font-sans text-[10px] tracking-[0.18em] uppercase px-4 py-2.5 hover:bg-violet-dark transition-colors duration-300"
+            >
+              Ver colección →
+            </Link>
           </div>
 
-          <button
-            className="md:hidden flex flex-col gap-1.5 p-2"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Menú"
-          >
-            <span
-              className={`block w-6 h-px bg-ink transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`}
-            />
-            <span
-              className={`block w-6 h-px bg-ink transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}
-            />
-            <span
-              className={`block w-6 h-px bg-ink transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}
-            />
-          </button>
+          {/* Mobile: CTA + hamburger */}
+          <div className="md:hidden flex items-center gap-4">
+            <Link
+              href="/#modos"
+              className="font-sans text-[10px] tracking-widest uppercase text-violet border border-violet/40 px-3 py-2"
+            >
+              Ver looks
+            </Link>
+            <button
+              className="flex flex-col gap-[5px] p-1"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Menú"
+            >
+              <span className={`block w-6 h-[1.5px] ${hamburgerColor} transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-[6.5px]" : ""}`} />
+              <span className={`block w-6 h-[1.5px] ${hamburgerColor} transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
+              <span className={`block w-6 h-[1.5px] ${hamburgerColor} transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-[6.5px]" : ""}`} />
+            </button>
+          </div>
         </nav>
       </motion.header>
 
+      {/* Mobile menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            className="fixed inset-0 z-40 bg-bone flex flex-col items-center justify-center gap-10"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-bone flex flex-col items-center justify-center gap-2"
+            initial={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
+            animate={{ opacity: 1, clipPath: "inset(0 0 0% 0)" }}
+            exit={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
+            transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             {[
               { href: "/#modos", label: "Modos" },
               { href: "/manifiesto", label: "Manifiesto" },
               { href: "/contacto", label: "Contacto" },
-            ].map((link) => (
-              <Link
+            ].map((link, i) => (
+              <motion.div
                 key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="font-serif text-4xl text-ink hover:text-violet transition-colors"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 + i * 0.07 }}
               >
-                {link.label}
-              </Link>
+                <Link
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="block font-serif text-5xl text-ink hover:text-violet transition-colors py-3"
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
             ))}
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.35 }}
+              className="mt-8"
+            >
+              <Link
+                href="/#modos"
+                onClick={() => setMenuOpen(false)}
+                className="inline-flex items-center gap-2 bg-violet text-bone font-sans text-xs tracking-[0.18em] uppercase px-8 py-4"
+              >
+                Ver la colección →
+              </Link>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

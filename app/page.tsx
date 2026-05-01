@@ -7,15 +7,18 @@ import ModesGrid from "@/components/ModesGrid";
 import HowItWorks from "@/components/HowItWorks";
 import InstagramFeed from "@/components/InstagramFeed";
 import Footer from "@/components/Footer";
+import { getAllModesWithPrices } from "@/lib/db";
 
-export default function Home() {
+export default async function Home() {
+  const modes = await getAllModesWithPrices();
+
   return (
     <>
       <Navbar />
       <main>
-        <Hero />
+        <Hero modes={modes} />
         <ManifestoSection />
-        <ModesGrid />
+        <ModesGrid modes={modes} />
         <HowItWorks />
         <InstagramFeed />
       </main>
