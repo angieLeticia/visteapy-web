@@ -1,5 +1,4 @@
-// TODO: reemplazar por número real cuando esté listo
-const WHATSAPP_NUMBER = "57XXXXXXXXXX";
+const WHATSAPP_NUMBER = "573219183669";
 
 export function buildWhatsAppUrl(lookName: string, size?: string): string {
   const text = size

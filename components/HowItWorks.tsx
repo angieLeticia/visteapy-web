@@ -1,22 +1,7 @@
 import FadeIn from "./ui/FadeIn";
+import { siteContent } from "@/lib/siteContent";
 
-const steps = [
-  {
-    number: "01",
-    title: "Eliges tu look",
-    description: "Explora los modos película. Encuentra el universo que te habla hoy.",
-  },
-  {
-    number: "02",
-    title: "Nos escribes por WhatsApp",
-    description: "Un mensaje es todo lo que separa entre tú y tu outfit favorito.",
-  },
-  {
-    number: "03",
-    title: "Te llega a casa",
-    description: "Nosotras nos encargamos del resto. Tú solo tienes que convertirte.",
-  },
-];
+const { howItWorks } = siteContent;
 
 export default function HowItWorks() {
   return (
@@ -24,24 +9,22 @@ export default function HowItWorks() {
       <div className="max-w-7xl mx-auto">
         <FadeIn className="mb-20 md:mb-28">
           <p className="font-sans text-xs tracking-[0.3em] uppercase text-ink/40 mb-4">
-            El proceso
+            {howItWorks.eyebrow}
           </p>
           <h2
             className="font-serif text-ink text-balance leading-tight tracking-tight"
             style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)" }}
           >
-            Tan fácil como
-            <br />
-            <em>vivir tu película</em>
+            {howItWorks.headline}
           </h2>
         </FadeIn>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
-          {steps.map((step, index) => (
+          {howItWorks.steps.map((step, index) => (
             <FadeIn key={step.number} delay={index * 0.15} direction="up">
               <div className="flex flex-col">
                 <span
-                  className="font-serif text-fog-dark leading-none mb-6 select-none"
+                  className="font-mono leading-none mb-6 select-none"
                   style={{
                     fontSize: "clamp(4rem, 8vw, 7rem)",
                     color: "#D8D3CC",

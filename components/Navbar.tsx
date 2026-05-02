@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { siteContent } from "@/lib/siteContent";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -45,19 +46,19 @@ export default function Navbar() {
               href="/#modos"
               className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-terracota transition-colors duration-300`}
             >
-              Modos
+              {siteContent.nav.modos}
             </Link>
             <Link
               href="/manifiesto"
               className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-terracota transition-colors duration-300`}
             >
-              Manifiesto
+              {siteContent.nav.manifesto}
             </Link>
             <Link
               href="/contacto"
               className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-terracota transition-colors duration-300`}
             >
-              Contacto
+              {siteContent.nav.contacto}
             </Link>
 
             {/* CTA */}
@@ -65,7 +66,7 @@ export default function Navbar() {
               href="/#modos"
               className="inline-flex items-center gap-1.5 bg-terracota text-bone font-sans text-[10px] tracking-[0.18em] uppercase px-4 py-2.5 hover:bg-terracota-dark transition-colors duration-300"
             >
-              Ver colección →
+              {siteContent.nav.cta}
             </Link>
           </div>
 
@@ -101,9 +102,9 @@ export default function Navbar() {
             transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             {[
-              { href: "/#modos", label: "Modos" },
-              { href: "/manifiesto", label: "Manifiesto" },
-              { href: "/contacto", label: "Contacto" },
+              { href: "/#modos", label: siteContent.nav.modos },
+              { href: "/manifiesto", label: siteContent.nav.manifesto },
+              { href: "/contacto", label: siteContent.nav.contacto },
             ].map((link, i) => (
               <motion.div
                 key={link.href}
@@ -132,7 +133,7 @@ export default function Navbar() {
                 onClick={() => setMenuOpen(false)}
                 className="inline-flex items-center gap-2 bg-terracota text-bone font-sans text-xs tracking-[0.18em] uppercase px-8 py-4 hover:bg-terracota-dark transition-colors duration-300"
               >
-                Ver la colección →
+                {siteContent.nav.cta}
               </Link>
             </motion.div>
           </motion.div>
