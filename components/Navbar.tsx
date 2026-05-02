@@ -43,19 +43,19 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-8">
             <Link
               href="/#modos"
-              className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-violet transition-colors duration-300`}
+              className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-terracota transition-colors duration-300`}
             >
               Modos
             </Link>
             <Link
               href="/manifiesto"
-              className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-violet transition-colors duration-300`}
+              className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-terracota transition-colors duration-300`}
             >
               Manifiesto
             </Link>
             <Link
               href="/contacto"
-              className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-violet transition-colors duration-300`}
+              className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-terracota transition-colors duration-300`}
             >
               Contacto
             </Link>
@@ -63,7 +63,7 @@ export default function Navbar() {
             {/* CTA */}
             <Link
               href="/#modos"
-              className="inline-flex items-center gap-1.5 bg-violet text-bone font-sans text-[10px] tracking-[0.18em] uppercase px-4 py-2.5 hover:bg-violet-dark transition-colors duration-300"
+              className="inline-flex items-center gap-1.5 bg-terracota text-bone font-sans text-[10px] tracking-[0.18em] uppercase px-4 py-2.5 hover:bg-terracota-dark transition-colors duration-300"
             >
               Ver colección →
             </Link>
@@ -73,7 +73,7 @@ export default function Navbar() {
           <div className="md:hidden flex items-center gap-4">
             <Link
               href="/#modos"
-              className="font-sans text-[10px] tracking-widest uppercase text-violet border border-violet/40 px-3 py-2"
+              className="font-sans text-[10px] tracking-widest uppercase text-terracota border border-terracota/40 px-3 py-2"
             >
               Ver looks
             </Link>
@@ -114,7 +114,7 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="block font-serif text-5xl text-ink hover:text-violet transition-colors py-3"
+                  className="block font-serif text-5xl text-ink hover:text-terracota transition-colors duration-300 py-3"
                 >
                   {link.label}
                 </Link>
@@ -130,7 +130,7 @@ export default function Navbar() {
               <Link
                 href="/#modos"
                 onClick={() => setMenuOpen(false)}
-                className="inline-flex items-center gap-2 bg-violet text-bone font-sans text-xs tracking-[0.18em] uppercase px-8 py-4"
+                className="inline-flex items-center gap-2 bg-terracota text-bone font-sans text-xs tracking-[0.18em] uppercase px-8 py-4 hover:bg-terracota-dark transition-colors duration-300"
               >
                 Ver la colección →
               </Link>

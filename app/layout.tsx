@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Playfair_Display, Inter, JetBrains_Mono } from "next/font/google";
+import CustomCursor from "@/components/ui/CustomCursor";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -14,6 +15,13 @@ const inter = Inter({
   variable: "--font-inter",
   display: "swap",
   weight: ["300", "400", "500"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -40,8 +48,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="antialiased">{children}</body>
+    <html lang="es" className={`${playfair.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
+      <body className="antialiased">
+        <CustomCursor />
+        {children}
+      </body>
     </html>
   );
 }

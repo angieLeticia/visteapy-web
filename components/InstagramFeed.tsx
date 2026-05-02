@@ -30,7 +30,7 @@ export default function InstagramFeed() {
             href="https://instagram.com/visteapy"
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden md:flex items-center gap-2 font-sans text-xs tracking-widest uppercase text-ink/50 hover:text-violet transition-colors duration-300"
+            className="hidden md:flex items-center gap-2 font-sans text-xs tracking-widest uppercase text-ink/50 hover:text-terracota transition-colors duration-300"
           >
             Seguir <span>→</span>
           </a>
@@ -56,7 +56,7 @@ export default function InstagramFeed() {
             href="https://instagram.com/visteapy"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-sans text-xs tracking-widest uppercase text-ink/50 hover:text-violet transition-colors"
+            className="font-sans text-xs tracking-widest uppercase text-ink/50 hover:text-terracota transition-colors"
           >
             Seguir en Instagram →
           </a>

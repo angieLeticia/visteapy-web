@@ -64,7 +64,7 @@ export default async function ModePage({ params }: Props) {
           <div className="relative z-10 h-full flex flex-col justify-end pb-12 md:pb-16 px-6 md:px-16 max-w-7xl mx-auto">
             <FadeIn direction="none">
               <p className="font-sans text-xs tracking-[0.3em] uppercase text-bone/50 mb-5">
-                <Link href="/#modos" className="hover:text-violet transition-colors">
+                <Link href="/#modos" className="hover:text-terracota transition-colors duration-300">
                   Modos
                 </Link>
                 {" · "}
@@ -105,7 +105,7 @@ export default async function ModePage({ params }: Props) {
         <section className="bg-bone pb-24 md:pb-36 px-6 md:px-12">
           <div className="max-w-7xl mx-auto">
             <FadeIn className="mb-12 md:mb-16">
-              <div className="w-12 h-px bg-violet mb-6 md:mb-8" />
+              <div className="w-12 h-px bg-terracota mb-6 md:mb-8" />
               <h2
                 className="font-serif text-ink tracking-tight"
                 style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)" }}

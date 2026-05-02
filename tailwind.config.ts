@@ -12,12 +12,15 @@ const config: Config = {
         bone: "#FAF7F2",
         ink: "#0F0F0F",
         fog: "#E8E4DD",
-        violet: "#7C3AED",
-        "violet-dark": "#5B21B6",
+        terracota: "#C1622F",
+        "terracota-dark": "#9A4A25",
+        "terracota-light": "#D4784A",
+        "terracota-muted": "#E8C4B0",
       },
       fontFamily: {
         serif: ["var(--font-playfair)", "Georgia", "serif"],
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        mono: ["var(--font-mono)", "JetBrains Mono", "ui-monospace", "monospace"],
       },
       fontSize: {
         "display-xl": ["clamp(3rem, 8vw, 8rem)", { lineHeight: "1.05", letterSpacing: "-0.02em" }],

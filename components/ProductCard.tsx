@@ -37,7 +37,7 @@ export default function ProductCard({ product, index }: { product: Product; inde
             {product.description}
           </p>
 
-          <p className="font-serif text-ink text-xl mb-5">{formatPrice(product.price)}</p>
+          <p className="font-mono text-ink text-base tracking-tight mb-5">{formatPrice(product.price)}</p>
 
           <div className="flex flex-wrap gap-2 mb-6">
             {product.sizes.map((size) => {
@@ -52,7 +52,7 @@ export default function ProductCard({ product, index }: { product: Product; inde
                     sold
                       ? "border-fog text-ink/25 line-through cursor-not-allowed"
                       : active
-                        ? "border-violet bg-violet text-bone"
+                        ? "border-terracota bg-terracota text-bone"
                         : "border-fog text-ink/70 hover:border-ink"
                   }`}
                 >

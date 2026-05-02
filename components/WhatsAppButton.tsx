@@ -24,7 +24,7 @@ export default function WhatsAppButton({
       rel="noopener noreferrer"
       className={`inline-flex items-center justify-center gap-2 font-sans text-xs tracking-[0.2em] uppercase transition-all duration-300 ${
         variant === "primary"
-          ? "bg-violet text-bone px-6 py-3.5 hover:bg-violet-dark"
+          ? "bg-terracota text-bone px-6 py-3.5 hover:bg-terracota-dark"
           : "border border-ink text-ink px-6 py-3.5 hover:bg-ink hover:text-bone"
       } ${className}`}
       whileHover={{ scale: 1.02 }}

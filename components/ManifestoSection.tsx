@@ -40,11 +40,19 @@ export default function ManifestoSection() {
           </p>
         </FadeIn>
 
-        <FadeIn delay={0.5} className="mt-16">
+        <FadeIn delay={0.45} className="mt-10 max-w-sm mx-auto">
+          <p className="font-sans font-light text-bone/35 text-sm leading-[1.8] italic">
+            No vendemos ropa. Vendemos la versión de ti
+            que ya sabías que existía.
+          </p>
+        </FadeIn>
+
+        <FadeIn delay={0.6} className="mt-16">
           <motion.a
             href="/manifiesto"
-            className="font-sans text-xs tracking-[0.25em] uppercase text-bone/50 hover:text-violet transition-colors duration-300 border-b border-bone/20 pb-1"
-            whileHover={{ borderColor: "#7C3AED" }}
+            className="font-sans text-xs tracking-[0.25em] uppercase text-bone/50 hover:text-terracota transition-colors duration-300 border-b border-bone/20 pb-1"
+            whileHover={{ borderColor: "#C1622F" }}
+            data-cursor-label="Leer"
           >
             Leer el manifiesto completo →
           </motion.a>

@@ -23,7 +23,7 @@ export default function Footer() {
                 href="https://instagram.com/visteapy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-sans text-xs tracking-widest uppercase text-bone/50 hover:text-violet transition-colors duration-300"
+                className="font-sans text-xs tracking-widest uppercase text-bone/50 hover:text-terracota transition-colors duration-300"
               >
                 Instagram
               </a>
@@ -31,13 +31,13 @@ export default function Footer() {
                 href="https://tiktok.com/@visteapy"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-sans text-xs tracking-widest uppercase text-bone/50 hover:text-violet transition-colors duration-300"
+                className="font-sans text-xs tracking-widest uppercase text-bone/50 hover:text-terracota transition-colors duration-300"
               >
                 TikTok
               </a>
               <Link
                 href="/contacto"
-                className="font-sans text-xs tracking-widest uppercase text-bone/50 hover:text-violet transition-colors duration-300"
+                className="font-sans text-xs tracking-widest uppercase text-bone/50 hover:text-terracota transition-colors duration-300"
               >
                 Contacto
               </Link>

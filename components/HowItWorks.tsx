@@ -50,7 +50,7 @@ export default function HowItWorks() {
                 >
                   {step.number}
                 </span>
-                <div className="w-12 h-px bg-violet mb-6" />
+                <div className="w-12 h-px bg-terracota mb-6" />
                 <h3 className="font-serif text-ink text-2xl mb-4 tracking-tight">{step.title}</h3>
                 <p className="font-sans font-light text-ink/60 text-base leading-[1.8]">
                   {step.description}
