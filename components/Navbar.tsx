@@ -60,6 +60,12 @@ export default function Navbar() {
             >
               {siteContent.nav.contacto}
             </Link>
+            <Link
+              href="/ia-fashion"
+              className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-terracota transition-colors duration-300`}
+            >
+              {siteContent.nav.ia}
+            </Link>
 
             {/* CTA */}
             <Link
@@ -105,6 +111,7 @@ export default function Navbar() {
               { href: "/#modos", label: siteContent.nav.modos },
               { href: "/manifiesto", label: siteContent.nav.manifesto },
               { href: "/contacto", label: siteContent.nav.contacto },
+              { href: "/ia-fashion", label: siteContent.nav.ia },
             ].map((link, i) => (
               <motion.div
                 key={link.href}
