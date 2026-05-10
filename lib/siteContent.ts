@@ -3,6 +3,7 @@ export const siteContent = {
     modos: "Universos",
     manifesto: "Manifiesto",
     contacto: "Contacto",
+    ia: "Estilista IA",
     cta: "Explorar →",
   },
 
