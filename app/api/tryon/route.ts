@@ -15,7 +15,7 @@ export async function POST(req: NextRequest) {
   const apiKey = process.env.FASHN_API_KEY;
   if (!apiKey) return NextResponse.json({ error: "FASHN_API_KEY no configurado" }, { status: 500 });
 
-  const { humanImg, garmImg, garmentDes, garmentCategory } = (await req.json()) as {
+  const { humanImg, garmImg, garmentCategory } = (await req.json()) as {
     humanImg: string;
     garmImg: string;
     garmentDes: string;
