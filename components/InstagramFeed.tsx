@@ -1,23 +1,10 @@
-// TODO: integrar con Instagram Graph API o widget tipo SnapWidget
 import FadeIn from "./ui/FadeIn";
-
-const mockImages = [
-  "https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=400&q=80&fit=crop",
-  "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&q=80&fit=crop",
-  "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400&q=80&fit=crop",
-  "https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=400&q=80&fit=crop",
-  "https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&q=80&fit=crop",
-  "https://images.unsplash.com/photo-1548624313-0396a39b47fa?w=400&q=80&fit=crop",
-  "https://images.unsplash.com/photo-1520012218364-3dbe62c99bee?w=400&q=80&fit=crop",
-  "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400&q=80&fit=crop",
-  "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=400&q=80&fit=crop",
-];
 
 export default function InstagramFeed() {
   return (
     <section className="bg-bone py-24 md:py-32 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
-        <FadeIn className="mb-12 flex items-end justify-between">
+        <FadeIn className="mb-16 flex items-end justify-between">
           <div>
             <p className="font-sans text-xs tracking-[0.3em] uppercase text-ink/40 mb-3">
               Instagram
@@ -36,22 +23,51 @@ export default function InstagramFeed() {
           </a>
         </FadeIn>
 
-        <div className="grid grid-cols-3 gap-1 md:gap-2">
-          {mockImages.map((src, i) => (
-            <FadeIn key={i} delay={i * 0.05}>
-              <div className="aspect-square overflow-hidden bg-fog group">
-                <img
-                  src={src}
-                  alt={`Visteapy Instagram ${i + 1}`}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  loading="lazy"
-                />
-              </div>
-            </FadeIn>
-          ))}
-        </div>
+        {/* CTA card — se reemplaza por widget real cuando haya contenido */}
+        <FadeIn>
+          <a
+            href="https://instagram.com/visteapy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex flex-col md:flex-row items-center justify-between gap-8 border border-fog rounded-2xl px-10 py-12 hover:border-terracota-muted transition-colors duration-500"
+          >
+            <div className="text-center md:text-left">
+              <p className="font-serif text-ink text-2xl md:text-3xl tracking-tight mb-3">
+                Las escenas están llegando.
+              </p>
+              <p className="font-sans text-sm text-ink/50 leading-relaxed max-w-sm">
+                Síguenos para ver los looks antes que nadie —
+                inspiraciones, detrás de cámaras y las prendas recién llegadas.
+              </p>
+            </div>
 
-        <div className="mt-10 text-center md:hidden">
+            <div className="flex-shrink-0 flex flex-col items-center gap-4">
+              {/* Instagram icon */}
+              <div className="w-16 h-16 rounded-2xl bg-fog group-hover:bg-terracota-muted transition-colors duration-500 flex items-center justify-center">
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="text-ink/60 group-hover:text-terracota transition-colors duration-500"
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
+                </svg>
+              </div>
+              <span className="font-sans text-xs tracking-widest uppercase text-ink/50 group-hover:text-terracota transition-colors duration-300">
+                Seguir →
+              </span>
+            </div>
+          </a>
+        </FadeIn>
+
+        <div className="mt-8 text-center md:hidden">
           <a
             href="https://instagram.com/visteapy"
             target="_blank"
