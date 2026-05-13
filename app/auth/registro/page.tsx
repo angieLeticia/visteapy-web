@@ -2,11 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { createClient } from "@/utils/supabase/client";
 
 export default function RegistroPage() {
-  const router = useRouter();
   const supabase = createClient();
 
   const [nombre, setNombre] = useState("");
