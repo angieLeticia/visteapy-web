@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { createClient } from "@/utils/supabase/client";
@@ -33,7 +32,6 @@ interface Props {
 }
 
 export default function MiCuentaClient({ user, profile, wishlist: initialWishlist }: Props) {
-  const router = useRouter();
   const supabase = createClient();
 
   const [nombre, setNombre] = useState(profile?.nombre ?? "");
