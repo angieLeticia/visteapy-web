@@ -2,11 +2,18 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 import { siteContent } from "@/lib/siteContent";
+import { createClient } from "@/utils/supabase/client";
+import type { User } from "@supabase/supabase-js";
 
 export default function Navbar() {
+  const router = useRouter();
+  const supabase = createClient();
+
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 60);
@@ -14,10 +21,33 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Escucha cambios de sesión en tiempo real
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => setUser(data.user));
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user ?? null);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
+
+  async function handleLogout() {
+    await supabase.auth.signOut();
+    setMenuOpen(false);
+    router.push("/");
+    router.refresh();
+  }
+
   const textColor = scrolled ? "text-ink" : "text-bone";
   const mutedColor = scrolled ? "text-ink/60" : "text-bone/60";
   const logoSubColor = scrolled ? "text-ink/50" : "text-bone/50";
   const hamburgerColor = scrolled ? "bg-ink" : "bg-bone";
+
+  const navLinks = [
+    { href: "/#modos", label: siteContent.nav.modos },
+    { href: "/manifiesto", label: siteContent.nav.manifesto },
+    { href: "/ia-fashion", label: siteContent.nav.ia },
+    { href: "/contacto", label: siteContent.nav.contacto },
+  ];
 
   return (
     <>
@@ -42,30 +72,40 @@ export default function Navbar() {
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8">
-            <Link
-              href="/#modos"
-              className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-terracota transition-colors duration-300`}
-            >
-              {siteContent.nav.modos}
-            </Link>
-            <Link
-              href="/manifiesto"
-              className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-terracota transition-colors duration-300`}
-            >
-              {siteContent.nav.manifesto}
-            </Link>
-            <Link
-              href="/contacto"
-              className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-terracota transition-colors duration-300`}
-            >
-              {siteContent.nav.contacto}
-            </Link>
-            <Link
-              href="/ia-fashion"
-              className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-terracota transition-colors duration-300`}
-            >
-              {siteContent.nav.ia}
-            </Link>
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-terracota transition-colors duration-300`}
+              >
+                {link.label}
+              </Link>
+            ))}
+
+            {/* Auth */}
+            {user ? (
+              <div className="flex items-center gap-5">
+                <Link
+                  href="/mi-cuenta"
+                  className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-terracota transition-colors duration-300`}
+                >
+                  Mi cuenta
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-terracota transition-colors duration-300`}
+                >
+                  Salir
+                </button>
+              </div>
+            ) : (
+              <Link
+                href="/auth/login"
+                className={`font-sans text-xs tracking-widest uppercase ${mutedColor} hover:text-terracota transition-colors duration-300`}
+              >
+                Iniciar sesión
+              </Link>
+            )}
 
             {/* CTA */}
             <Link
@@ -107,12 +147,7 @@ export default function Navbar() {
             exit={{ opacity: 0, clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            {[
-              { href: "/#modos", label: siteContent.nav.modos },
-              { href: "/manifiesto", label: siteContent.nav.manifesto },
-              { href: "/contacto", label: siteContent.nav.contacto },
-              { href: "/ia-fashion", label: siteContent.nav.ia },
-            ].map((link, i) => (
+            {navLinks.map((link, i) => (
               <motion.div
                 key={link.href}
                 initial={{ opacity: 0, y: 20 }}
@@ -122,18 +157,44 @@ export default function Navbar() {
                 <Link
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="block font-serif text-5xl text-ink hover:text-terracota transition-colors duration-300 py-3"
+                  className="block font-serif text-4xl text-ink hover:text-terracota transition-colors duration-300 py-2"
                 >
                   {link.label}
                 </Link>
               </motion.div>
             ))}
 
+            {/* Auth móvil */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35 }}
-              className="mt-8"
+              transition={{ delay: 0.1 + navLinks.length * 0.07 }}
+              className="flex flex-col items-center gap-3 mt-4"
+            >
+              {user ? (
+                <>
+                  <Link href="/mi-cuenta" onClick={() => setMenuOpen(false)}
+                    className="font-sans text-xs tracking-widest uppercase text-ink/60 hover:text-terracota transition-colors">
+                    Mi cuenta
+                  </Link>
+                  <button onClick={handleLogout}
+                    className="font-sans text-xs tracking-widest uppercase text-ink/40 hover:text-terracota transition-colors">
+                    Cerrar sesión
+                  </button>
+                </>
+              ) : (
+                <Link href="/auth/login" onClick={() => setMenuOpen(false)}
+                  className="font-sans text-xs tracking-widest uppercase text-ink/60 hover:text-terracota transition-colors">
+                  Iniciar sesión
+                </Link>
+              )}
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.42 }}
+              className="mt-4"
             >
               <Link
                 href="/#modos"

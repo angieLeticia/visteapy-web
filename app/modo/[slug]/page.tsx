@@ -116,7 +116,7 @@ export default async function ModePage({ params }: Props) {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-14 md:gap-y-16">
               {(mode.products ?? []).map((product, index) => (
-                <ProductCard key={product.id} product={product} index={index} />
+                <ProductCard key={product.id} product={product} index={index} modeSlug={mode.slug} />
               ))}
             </div>
           </div>
